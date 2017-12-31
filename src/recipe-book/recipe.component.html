@@ -1,20 +1,21 @@
 <div class="card">
-  <div class="card-header">
-    Recipe name
+  <div class="card-header" title="{{ recipe.id }}">
+    {{ recipe.name }}
   </div>
   <div class="card-block">
+    <img *ngIf="recipe.image" [src]="recipe.image">
     <div class="card-title">Ingredients</div>
     <div class="card-text">
       <ul class="list">
-        <li>Ingredient 1</li>
+        <li *ngFor="let i of recipe.ingredients">{{ i }}</li>
       </ul>
     </div>
   </div>
   <div class="card-block">
-    <div class="card-title">Method</div>
+    <div class="card-title">Steps</div>
     <div class="card-text">
       <ol class="list">
-        <li>Step 1</li>
+        <li *ngFor="let s of recipe.steps">{{ s }}</li>
       </ol>
     </div>
   </div>

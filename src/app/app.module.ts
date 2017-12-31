@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core'
 
 
 import { AppComponent } from './app.component'
-import { RecipeBookComponent, RecipeDetailComponent, RecipeListComponent, RecipeSummaryComponent } from '../recipe-book'
+import { RecipeBookComponent, RecipeComponent } from '../recipe-book'
 import { ShoppingListComponent, ShoppingListItemComponent } from '../shopping-list'
 
 
@@ -15,9 +15,7 @@ import { ShoppingListComponent, ShoppingListItemComponent } from '../shopping-li
     ShoppingListComponent,
     ShoppingListItemComponent,
     RecipeBookComponent,
-    RecipeDetailComponent,
-    RecipeListComponent,
-    RecipeSummaryComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule,

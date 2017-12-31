@@ -1,0 +1,8 @@
+img {
+  height: auto;
+  width: 50%;
+  object-fit: contain;
+  float: right;
+  padding-left: 0.3333rem;
+  padding-bottom: 0.3333rem;
+}

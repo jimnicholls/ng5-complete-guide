@@ -1,26 +1,54 @@
 <div class="row flex-items-xs-middle title-bar">
   <div class="title">Recipe book</div>
   <div class="actions">
-    <button type="button" class="btn btn-link">Action 1</button>
-    <clr-dropdown>
-      <button type="button" class="btn btn-link" clrDropdownTrigger>
-        Actions
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <clr-dropdown-menu *clrIfOpen>
-        <button type="button" clrDropdownItem>Action 2</button>
-        <button type="button" clrDropdownItem>Action 3</button>
-        <button type="button" clrDropdownItem>Action 4</button>
-      </clr-dropdown-menu>
-    </clr-dropdown>
+    <a class="btn btn-link"><clr-icon shape="plus"></clr-icon> New recipe</a>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-5">
-    <app-recipe-list></app-recipe-list>
+<div class="row" *ngIf="recipeList.length > 0; else noRecipes">
+  <div class="col-sm">
+    <clr-datagrid [clDgRowSelection]="true" [(clrDgSingleSelected)]="selectedRecipe">
+      <clr-dg-column [clrDgField]="'id'">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+          ID
+        </ng-container>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'name'">
+        <ng-container *clrDgHideableColumn="{hidden: false}">
+          Name
+        </ng-container>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'ingredients.length'">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+          Ingredients
+        </ng-container>
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'steps.length'">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+          Steps
+        </ng-container>
+      </clr-dg-column>
+      <clr-dg-placeholder>We couldn't find any recipes.</clr-dg-placeholder>
+      <clr-dg-row *clrDgItems="let r of recipeList" [clrDgItem]="r">
+        <clr-dg-cell>{{ r.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ r.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ r.ingredients.length }}</clr-dg-cell>
+        <clr-dg-cell>{{ r.steps.length }}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-footer>{{ recipeList.length | i18nPlural: RECIPES_I18N_PLURAL_MAPPING }}</clr-dg-footer>
+    </clr-datagrid>
   </div>
-  <div class="col-md">
-    <app-recipe-detail></app-recipe-detail>
+  <div class="col-sm-6" *ngIf="selectedRecipe">
+    <app-recipe></app-recipe>
   </div>
 </div>
+
+<ng-template #noRecipes>
+  <div style="padding: 1em;"></div>
+  <clr-alert [clrAlertType]="'alert-info'" [clrAlertClosable]="false">
+    <div class="alert-item">
+      <span class="alert-text">You don't have any recipes yet.</span>
+    </div>
+  </clr-alert>
+  <p>Try adding a new recipe, or loading data from the cog menu.</p>
+</ng-template>

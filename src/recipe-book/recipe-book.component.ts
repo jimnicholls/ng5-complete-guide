@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Recipe, sampleRecipeList } from './recipe.model'
 
 
 
@@ -8,6 +9,16 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: [ './recipe-book.component.css' ],
 })
 export class RecipeBookComponent implements OnInit {
+
+  RECIPES_I18N_PLURAL_MAPPING: { [_: string]: string } = {
+    '=0': 'No recipes',
+    '=1': '1 recipe',
+    'other': '# recipes',
+  }
+
+  recipeList: Recipe[] = [ ...sampleRecipeList ]
+  selectedRecipe: Recipe|undefined = undefined
+
 
   constructor() { }
 
