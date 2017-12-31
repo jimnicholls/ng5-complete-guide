@@ -1,0 +1,19 @@
+<div class="row flex-items-xs-middle title-bar">
+  <div class="title">Shopping list</div>
+  <div class="actions">
+    <button type="button" class="btn btn-link">Action 1</button>
+    <clr-dropdown>
+      <button type="button" class="btn btn-link" clrDropdownTrigger>
+        Actions
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen>
+        <button type="button" clrDropdownItem>Action 2</button>
+        <button type="button" clrDropdownItem>Action 3</button>
+        <button type="button" clrDropdownItem>Action 4</button>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</div>
+
+<app-shopping-list-item></app-shopping-list-item>

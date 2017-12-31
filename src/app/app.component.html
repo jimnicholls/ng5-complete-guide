@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="header-nav">
-      <a href="/" class="nav-link nav-icon" title="Shopping list"><clr-icon shape="shopping-cart"></clr-icon></a>
+      <a href="/" class="nav-link nav-icon active" title="Shopping list"><clr-icon shape="shopping-cart"></clr-icon></a>
       <a href="/" class="nav-link nav-icon" title="Recipe book"><clr-icon shape="book"></clr-icon></a>
     </div>
     <div class="header-actions">
@@ -15,6 +15,9 @@
   </clr-header>
   <div class="content-container">
     <div class="content-area">
+      <app-shopping-list></app-shopping-list>
+      <hr style="margin: 2rem -1rem;">
+      <app-recipe-book></app-recipe-book>
     </div>
   </div>
 </clr-main-container>

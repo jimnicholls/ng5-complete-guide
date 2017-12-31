@@ -1,0 +1,17 @@
+.title-bar {
+}
+
+.title-bar .title {
+  color: black;
+  font-weight: 200;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.title-bar .actions {
+  border-left: #bbb solid 1px;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+}
