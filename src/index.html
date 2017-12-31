@@ -9,6 +9,46 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+<app-root>
+  <style>
+    html {
+      font-family: Metropolis, sans-serif;
+      font-size: 24px;
+    }
+    app-root {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: row;
+    }
+    app-root div {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    app-root h1 {
+      color: black;
+      font-weight: 200;
+      line-height: 2rem;
+      font-size: 1.33333rem;
+      margin: .67em 0;
+
+    }
+    app-root p {
+      font-size: .58333rem;
+      font-weight: 400;
+      color: #565656;
+      height: 3rem;
+    }
+  </style>
+  <div>
+    <h1>Angular 5 Project</h1>
+    <p class="spinner spinner-inverse">Loading...</p>
+  </div>
+</app-root>
 </body>
 </html>
