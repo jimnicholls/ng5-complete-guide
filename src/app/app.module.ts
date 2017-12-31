@@ -1,20 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ClarityModule } from "clarity-angular";
-import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
+import { ClarityModule } from 'clarity-angular'
+import { NgModule } from '@angular/core'
 
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     ClarityModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }

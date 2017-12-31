@@ -1,14 +1,16 @@
-import { AppPage } from './app.po';
+import { AppPage } from './app.po'
+
+
 
 describe('ng5-complete-guide App', () => {
-  let page: AppPage;
+  let page: AppPage
 
   beforeEach(() => {
-    page = new AppPage();
-  });
+    page = new AppPage()
+  })
 
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
-  });
-});
+    page.navigateTo()
+    expect(page.getParagraphText()).toEqual('Welcome to app!')
+  })
+})
