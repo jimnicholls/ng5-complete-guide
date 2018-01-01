@@ -60,4 +60,18 @@ export const sampleRecipeList: Recipe[] = [
     ],
   ),
 
+  ...generateRecipes(100),
+
 ]
+
+
+function* generateRecipes(count: number): IterableIterator<Recipe> {
+  for (let i = 0; i < count; i++) {
+    yield new Recipe(
+      `Generated recipe ${i}`,
+      null,
+      [],
+      [],
+    )
+  }
+}

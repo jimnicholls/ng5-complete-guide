@@ -35,7 +35,11 @@
         <clr-dg-cell>{{ r.ingredients.length }}</clr-dg-cell>
         <clr-dg-cell>{{ r.steps.length }}</clr-dg-cell>
       </clr-dg-row>
-      <clr-dg-footer>{{ recipeList.length | i18nPlural: RECIPES_I18N_PLURAL_MAPPING }}</clr-dg-footer>
+      <clr-dg-footer>
+        {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+        {{ recipeList.length | i18nPlural: RECIPES_I18N_PLURAL_MAPPING }}
+        <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+      </clr-dg-footer>
     </clr-datagrid>
   </div>
   <div class="col-sm-6" *ngIf="selectedRecipe">
