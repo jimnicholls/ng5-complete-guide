@@ -27,6 +27,7 @@
         <clr-icon shape="trash"></clr-icon> Delete
       </button>
       <clr-signpost-content #deleteConfirmationContent [clrPosition]="'top-middle'">
+      <clr-signpost-content #deleteConfirmationContent [clrPosition]="'top-middle'" *clrIfOpen>
         <h3 style="margin-bottom: 1rem;">Are you sure you want to delete this recipe?</h3>
         <p style="margin-bottom: 1rem;">Once you delete a recipe, you cannot undo it.</p>
         <a type="button" class="btn btn-primary btn-danger" (click)="onDeleteConfirmationDelete()">Delete</a>

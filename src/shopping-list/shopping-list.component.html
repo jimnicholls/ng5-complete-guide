@@ -6,7 +6,7 @@
       <a class="btn btn-sm btn-danger-outline" [class.disabled]="isEmpty()" clrSignpostTrigger="deleteConfirmationIsOpen">
         <clr-icon shape="uninstall"></clr-icon> Clear the shopping list
       </a>
-      <clr-signpost-content #clearConfirmationContent [clrPosition]="'bottom-middle'">
+      <clr-signpost-content #clearConfirmationContent [clrPosition]="'bottom-middle'" *clrIfOpen>
         <h3 style="margin-bottom: 1rem;">Are you sure you want to clear your shopping list?</h3>
         <p style="margin-bottom: 1rem;">Once you clear your shopping list, you cannot undo it.</p>
         <a type="button" class="btn btn-primary btn-danger" (click)="onClearConfirmationClear()">Clear</a>
