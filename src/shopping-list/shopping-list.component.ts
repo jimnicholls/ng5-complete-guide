@@ -19,7 +19,7 @@ export class ShoppingListComponent implements OnInit {
 
 
   constructor() {
-    this.addSampleList()
+    this.shoppingList = [ ]
   }
 
 

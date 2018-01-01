@@ -16,7 +16,7 @@ export class RecipeBookComponent implements OnInit {
     'other': '# recipes',
   }
 
-  recipeList: Recipe[] = [ ...sampleRecipeList ]
+  recipeList: Recipe[] = []
   selectedRecipe: Recipe|undefined = undefined
 
 
@@ -24,5 +24,10 @@ export class RecipeBookComponent implements OnInit {
 
 
   ngOnInit() { }
+
+
+  addSampleData() {
+    this.recipeList = [ ...sampleRecipeList ]
+  }
 
 }
