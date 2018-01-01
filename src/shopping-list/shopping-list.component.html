@@ -1,19 +1,79 @@
 <div class="row flex-items-xs-middle title-bar">
   <div class="title">Shopping list</div>
   <div class="actions">
-    <button type="button" class="btn btn-link">Action 1</button>
-    <clr-dropdown>
-      <button type="button" class="btn btn-link" clrDropdownTrigger>
-        Actions
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <clr-dropdown-menu *clrIfOpen>
-        <button type="button" clrDropdownItem>Action 2</button>
-        <button type="button" clrDropdownItem>Action 3</button>
-        <button type="button" clrDropdownItem>Action 4</button>
-      </clr-dropdown-menu>
-    </clr-dropdown>
+    <a class="btn btn-link" (click)="addSampleList()"><clr-icon shape="plus"></clr-icon> Add to the shopping list</a>
+    <clr-signpost>
+      <a class="btn btn-sm btn-danger-outline" [class.disabled]="isEmpty()" clrSignpostTrigger="deleteConfirmationIsOpen">
+        <clr-icon shape="uninstall"></clr-icon> Clear the shopping list
+      </a>
+      <clr-signpost-content #clearConfirmationContent [clrPosition]="'bottom-middle'">
+        <h3 style="margin-bottom: 1rem;">Are you sure you want to clear your shopping list?</h3>
+        <p style="margin-bottom: 1rem;">Once you clear your shopping list, you cannot undo it.</p>
+        <a type="button" class="btn btn-primary btn-danger" (click)="onClearConfirmationClear()">Clear</a>
+        <a type="button" class="btn btn-outline" (click)="onClearConfirmationCancel()">Cancel</a>
+      </clr-signpost-content>
+    </clr-signpost>
+  </div>
+  <div class="btn-group btn-icon" style="margin-left: auto;">
+    <div class="radio btn" [class.disabled]="isEmpty()">
+      <input type="radio" name="app-shopping-list-view-as" id="app-shopping-list-view-as-cards"
+             [disabled]="isEmpty()"
+             [checked]="viewAs === 'cards' && !isEmpty()"
+             (click)="viewAs = 'cards'">
+      <label for="app-shopping-list-view-as-cards">
+        <clr-icon shape="view-cards" title="Show the shopping list as a grid of cards"></clr-icon>
+      </label>
+    </div>
+    <div class="radio btn" [class.disabled]="isEmpty()">
+      <input type="radio" name="app-shopping-list-view-as" id="app-shopping-list-view-as-list"
+             [disabled]="isEmpty()"
+             [checked]="viewAs === 'list' && !isEmpty()"
+             (click)="viewAs = 'list'">
+      <label for="app-shopping-list-view-as-list">
+        <clr-icon shape="view-list" title="Show the shopping list as a list"></clr-icon>
+      </label>
+    </div>
   </div>
 </div>
 
-<app-shopping-list-item></app-shopping-list-item>
+<div *ngIf="shoppingList?.length; then viewShoppingList; else emptyShoppingList"></div>
+<ng-template #viewShoppingList><div *ngIf="viewAs === 'list'; then viewAsList; else viewAsCards"></div></ng-template>
+
+
+<ng-template #viewAsList>
+  <clr-datagrid [clrDgSelected]="selected" (clrDgSelectedChange)="onGridSelectedChanged()" [clDgRowSelection]="'true'">
+    <clr-dg-column [clrDgField]="'description'">Item</clr-dg-column>
+    <clr-dg-row *clrDgItems="let item of shoppingList" [clrDgItem]="item">
+      <clr-dg-cell>{{ item.description }}</clr-dg-cell>
+    </clr-dg-row>
+  </clr-datagrid>
+</ng-template>
+
+
+<ng-template #viewAsCards>
+  <div class="row">
+    <div class="col-sm-6 col-md-3 col-xl-2" *ngFor="let item of shoppingList">
+     <div class="card clickable" [class.ticked]="item.ticked" (click)="onCardClicked(item)">
+       <div class="card-block">
+         <div class="card-title">{{ item.description }}</div>
+       </div>
+     </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #emptyShoppingList>
+  <div style="padding: 1em;"></div>
+  <clr-alert [clrAlertType]="'alert-info'" [clrAlertClosable]="false">
+    <div class="alert-item">
+      <span class="alert-text">Your shopping list is empty.</span>
+    </div>
+  </clr-alert>
+  <p>Try adding adding something to your list, or loading data from the cog menu.</p>
+  <p>
+    <clr-icon shape="help-info" class="is-solid is-info" size="36"></clr-icon>
+    You can add all the ingredients needed for a recipe in one go. Find the recipe in the recipe book and then choose
+    <b>add to shopping list</b>.
+  </p>
+</ng-template>

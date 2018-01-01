@@ -15,3 +15,15 @@
   margin-left: 1rem;
   padding-left: 0.5rem;
 }
+
+.card.ticked {
+  background: #d9e4ea;
+}
+
+.card.ticked .card-title {
+  text-decoration: line-through #909ba1 wavy;
+}
+
+.datagrid-row.datagrid-selected .datagrid-cell {
+  text-decoration: line-through #909ba1 wavy;
+}

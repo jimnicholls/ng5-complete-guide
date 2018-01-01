@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { RecipeBookComponent, RecipeComponent } from '../recipe-book'
-import { ShoppingListComponent, ShoppingListItemComponent } from '../shopping-list'
+import { ShoppingListComponent } from '../shopping-list'
 
 
 
@@ -13,7 +13,6 @@ import { ShoppingListComponent, ShoppingListItemComponent } from '../shopping-li
   declarations: [
     AppComponent,
     ShoppingListComponent,
-    ShoppingListItemComponent,
     RecipeBookComponent,
     RecipeComponent,
   ],
