@@ -1,4 +1,6 @@
 import { Component } from '@angular/core'
+import { Recipe, makeSampleRecipeList } from '../recipe-book'
+import { ShoppingListItem, makeSampleShoppingList } from '../shopping-list'
 
 
 
@@ -8,4 +10,9 @@ import { Component } from '@angular/core'
   styleUrls: [ './app.component.css' ],
 })
 export class AppComponent {
+
+  recipeBook: Recipe[] = [ ]
+
+  shoppingList: ShoppingListItem[] = [ ]
+
 }

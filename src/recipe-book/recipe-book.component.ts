@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
+
 import { Recipe, sampleRecipeList } from './recipe.model'
 
 
@@ -8,7 +9,7 @@ import { Recipe, sampleRecipeList } from './recipe.model'
   templateUrl: './recipe-book.component.html',
   styleUrls: [ './recipe-book.component.css' ],
 })
-export class RecipeBookComponent implements OnInit {
+export class RecipeBookComponent implements OnChanges {
 
   RECIPES_I18N_PLURAL_MAPPING: { [_: string]: string } = {
     '=0': 'No recipes',
@@ -16,15 +17,17 @@ export class RecipeBookComponent implements OnInit {
     'other': '# recipes',
   }
 
-  recipeList: Recipe[] = []
-  selectedRecipe: Recipe|undefined = undefined
+
+  @Input() recipeBook: Recipe[]
+
+  selectedRecipe: Recipe | undefined = undefined
 
 
-  constructor() { }
-
-
-  ngOnInit() { }
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.selectedRecipe && changes.hasOwnProperty('recipeBook') && !this.recipeBook.includes(this.selectedRecipe)) {
+      this.selectedRecipe = undefined
+    }
+  }
 
   addSampleData() {
     this.recipeList = [ ...sampleRecipeList ]

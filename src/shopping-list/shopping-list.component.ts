@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import { Component, HostListener, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core'
 
 import { sampleShoppingList, ShoppingListItem } from './shopping-list.model'
 
@@ -9,35 +9,26 @@ import { sampleShoppingList, ShoppingListItem } from './shopping-list.model'
   templateUrl: './shopping-list.component.html',
   styleUrls: [ './shopping-list.component.css' ],
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnChanges {
 
-  private _shoppingList: ShoppingListItem[]
+  @Input() shoppingList: ShoppingListItem[]
+
   selected: ShoppingListItem[]
+
   viewAs: 'cards' | 'list' = 'cards'
+
   @ViewChild('clearConfirmationContent') clearConfirmationContent: any
 
 
-
-  constructor() {
-    this.shoppingList = [ ]
-  }
-
-
-  ngOnInit() { }
-
-
-  get shoppingList(): ShoppingListItem[] {
-    return this._shoppingList
-  }
-
-  set shoppingList(newShoppingList: ShoppingListItem[]) {
-    this._shoppingList = newShoppingList
-    this.selected = newShoppingList.filter(_1 => _1.ticked)
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.hasOwnProperty('shoppingList')) {
+      this.selected = this.shoppingList.filter(_1 => _1.ticked)
+    }
   }
 
 
   isEmpty() {
-    return !this._shoppingList.length
+    return !this.shoppingList.length
   }
 
 
@@ -61,7 +52,7 @@ export class ShoppingListComponent implements OnInit {
 
   onClearConfirmationClear() {
     this.clearConfirmationContent.close()
-    this.shoppingList = []
+    // TODO: Emit an event
   }
 
 

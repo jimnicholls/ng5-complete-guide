@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="recipeList.length > 0; else noRecipes">
+<div class="row" *ngIf="recipeBook.length > 0; else noRecipes">
   <div class="col-sm">
     <clr-datagrid [clDgRowSelection]="true" [(clrDgSingleSelected)]="selectedRecipe">
       <clr-dg-column [clrDgField]="'id'">
@@ -29,7 +29,7 @@
         </ng-container>
       </clr-dg-column>
       <clr-dg-placeholder>We couldn't find any recipes.</clr-dg-placeholder>
-      <clr-dg-row *clrDgItems="let r of recipeList" [clrDgItem]="r">
+      <clr-dg-row *clrDgItems="let r of recipeBook" [clrDgItem]="r">
         <clr-dg-cell>{{ r.id }}</clr-dg-cell>
         <clr-dg-cell>{{ r.name }}</clr-dg-cell>
         <clr-dg-cell>{{ r.ingredients.length }}</clr-dg-cell>
@@ -37,7 +37,7 @@
       </clr-dg-row>
       <clr-dg-footer>
         {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
-        {{ recipeList.length | i18nPlural: RECIPES_I18N_PLURAL_MAPPING }}
+        {{ recipeBook.length | i18nPlural: RECIPES_I18N_PLURAL_MAPPING }}
         <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
