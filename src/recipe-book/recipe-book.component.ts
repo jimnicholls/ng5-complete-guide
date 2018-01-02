@@ -29,4 +29,9 @@ export class RecipeBookComponent implements OnChanges {
     }
   }
 
+
+  onRecipeClosed() {
+    this.selectedRecipe = undefined
+  }
+
 }

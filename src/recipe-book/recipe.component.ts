@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, ViewChild } from '@angular/core'
+import { Component, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core'
 
 import { Recipe } from './recipe.model'
 
@@ -11,8 +11,13 @@ import { Recipe } from './recipe.model'
 export class RecipeComponent {
 
   @Input() recipe: Recipe
+  @Output() closed = new EventEmitter<Recipe>()
 
   @ViewChild('deleteConfirmationContent') deleteConfirmationContent: any
+
+  onCloseClicked() {
+    this.closed.emit(this.recipe)
+  }
 
   onDeleteConfirmationCancel() {
     this.deleteConfirmationContent.close()

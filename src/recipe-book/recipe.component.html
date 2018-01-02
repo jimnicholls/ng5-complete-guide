@@ -1,6 +1,12 @@
 <div class="card">
   <div class="card-header" title="{{ recipe.id }}">
-    {{ recipe.name }}
+    <div class="flex-items-xs-middle" style="display: flex;">
+      {{ recipe.name }}
+      <clr-icon shape="times" title="Close this recipe"
+                class="btn btn-sm btn-link" style="margin-left: auto;"
+                (click)="onCloseClicked()">
+      </clr-icon>
+    </div>
   </div>
   <div class="card-block">
     <img *ngIf="recipe.image" [src]="recipe.image">
