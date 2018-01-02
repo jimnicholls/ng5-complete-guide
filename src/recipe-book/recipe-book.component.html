@@ -43,7 +43,7 @@
     </clr-datagrid>
   </div>
   <div class="col-sm-6" *ngIf="selectedRecipe">
-    <app-recipe></app-recipe>
+    <app-recipe [recipe]="selectedRecipe"></app-recipe>
   </div>
 </div>
 

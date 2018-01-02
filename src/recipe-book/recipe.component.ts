@@ -1,6 +1,6 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import { Component, HostListener, Input, ViewChild } from '@angular/core'
 
-import { Recipe, sampleRecipeList } from './recipe.model'
+import { Recipe } from './recipe.model'
 
 
 @Component({
@@ -8,15 +8,11 @@ import { Recipe, sampleRecipeList } from './recipe.model'
   templateUrl: './recipe.component.html',
   styleUrls: [ './recipe.component.css' ],
 })
-export class RecipeComponent implements OnInit {
+export class RecipeComponent {
 
-  recipe: Recipe = sampleRecipeList[0]
+  @Input() recipe: Recipe
 
   @ViewChild('deleteConfirmationContent') deleteConfirmationContent: any
-
-  constructor() { }
-
-  ngOnInit() { }
 
   onDeleteConfirmationCancel() {
     this.deleteConfirmationContent.close()
