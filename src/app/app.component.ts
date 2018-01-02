@@ -11,6 +11,8 @@ import { ShoppingListItem, makeSampleShoppingList } from '../shopping-list'
 })
 export class AppComponent {
 
+  selectedFeature: 'shopping list' | 'recipe book' = 'shopping list'
+
   recipeBook: Recipe[] = [ ]
 
   shoppingList: ShoppingListItem[] = [ ]

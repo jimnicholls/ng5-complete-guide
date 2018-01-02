@@ -6,8 +6,14 @@
       </a>
     </div>
     <div class="header-nav">
-      <a href="/" class="nav-link nav-icon active" title="Shopping list"><clr-icon shape="shopping-cart"></clr-icon></a>
-      <a href="/" class="nav-link nav-icon" title="Recipe book"><clr-icon shape="book"></clr-icon></a>
+      <a class="nav-link nav-icon" [class.active]="selectedFeature === 'shopping list'" title="Shopping list"
+         (click)="selectedFeature = 'shopping list'">
+        <clr-icon shape="shopping-cart"></clr-icon>
+      </a>
+      <a class="nav-link nav-icon" [class.active]="selectedFeature === 'recipe book'" title="Recipe book"
+         (click)="selectedFeature = 'recipe book'">
+        <clr-icon shape="book"></clr-icon>
+      </a>
     </div>
     <div class="header-actions">
       <a href="https://github.com/jimnicholls/ng5-complete-guide" class="nav-link nav-text">Jim Nicholls</a>
@@ -26,10 +32,13 @@
     <div class="content-area">
       <app-shopping-list [shoppingList]="shoppingList"
                          (itemAdded)="onShoppingListItemAdded($event)"
-                         (cleared)="onShoppingListCleared()">
+                         (cleared)="onShoppingListCleared()"
+                         *ngIf="selectedFeature === 'shopping list'">
       </app-shopping-list>
-      <hr style="margin: 2rem -1rem;">
-      <app-recipe-book [recipeBook]="recipeBook"></app-recipe-book>
+      <app-recipe-book [recipeBook]="recipeBook"
+                       *ngIf="selectedFeature === 'recipe book'">
+
+      </app-recipe-book>
     </div>
   </div>
 </clr-main-container>
