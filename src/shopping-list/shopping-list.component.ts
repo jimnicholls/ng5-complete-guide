@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core'
+import { Component, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core'
 
 import { ShoppingListItem } from './shopping-list.model'
 
@@ -12,6 +12,8 @@ import { ShoppingListItem } from './shopping-list.model'
 export class ShoppingListComponent implements OnChanges {
 
   @Input() shoppingList: ShoppingListItem[]
+
+  @Output() cleared = new EventEmitter()
 
   selected: ShoppingListItem[]
 
@@ -47,7 +49,7 @@ export class ShoppingListComponent implements OnChanges {
 
   onClearConfirmationClear() {
     this.clearConfirmationContent.close()
-    // TODO: Emit an event
+    this.cleared.emit()
   }
 
 

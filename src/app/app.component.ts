@@ -21,4 +21,9 @@ export class AppComponent {
     this.shoppingList = makeSampleShoppingList()
   }
 
+
+  onShoppingListCleared() {
+    this.shoppingList = [ ]
+  }
+
 }

@@ -24,7 +24,9 @@
   </clr-header>
   <div class="content-container">
     <div class="content-area">
-      <app-shopping-list [shoppingList]="shoppingList"></app-shopping-list>
+      <app-shopping-list [shoppingList]="shoppingList"
+                         (cleared)="onShoppingListCleared()">
+      </app-shopping-list>
       <hr style="margin: 2rem -1rem;">
       <app-recipe-book [recipeBook]="recipeBook"></app-recipe-book>
     </div>
