@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
 
-import { Recipe, sampleRecipeList } from './recipe.model'
+import { Recipe } from './recipe.model'
 
 
 
@@ -27,10 +27,6 @@ export class RecipeBookComponent implements OnChanges {
     if (this.selectedRecipe && changes.hasOwnProperty('recipeBook') && !this.recipeBook.includes(this.selectedRecipe)) {
       this.selectedRecipe = undefined
     }
-  }
-
-  addSampleData() {
-    this.recipeList = [ ...sampleRecipeList ]
   }
 
 }

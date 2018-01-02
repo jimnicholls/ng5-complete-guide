@@ -14,8 +14,8 @@
       <clr-dropdown class="nav-link nav-icon">
         <a clrDropdownTrigger><clr-icon shape="cog"></clr-icon></a>
         <clr-dropdown-menu *clrIfOpen [clrPosition]="'bottom-right'">
-          <a clrDropdownItem>Load data</a>
-          <a clrDropdownItem>Save data</a>
+          <a clrDropdownItem (click)="loadSampleData()">Load data</a>
+          <a class="disabled" clrDropdownItem>Save data</a>
           <div class="dropdown-divider"></div>
           <a class="disabled" clrDropdownItem>Log out</a>
         </clr-dropdown-menu>

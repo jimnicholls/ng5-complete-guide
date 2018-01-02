@@ -15,4 +15,10 @@ export class AppComponent {
 
   shoppingList: ShoppingListItem[] = [ ]
 
+
+  loadSampleData() {
+    this.recipeBook = makeSampleRecipeList()
+    this.shoppingList = makeSampleShoppingList()
+  }
+
 }

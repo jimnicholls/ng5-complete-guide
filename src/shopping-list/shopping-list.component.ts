@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core'
 
-import { sampleShoppingList, ShoppingListItem } from './shopping-list.model'
+import { ShoppingListItem } from './shopping-list.model'
 
 
 
@@ -37,11 +37,6 @@ export class ShoppingListComponent implements OnChanges {
     for (const i of this.shoppingList) {
       i.ticked = selectedIds.has(i.id)
     }
-  }
-
-
-  addSampleList() {
-    this.shoppingList = [ ...sampleShoppingList ]
   }
 
 
