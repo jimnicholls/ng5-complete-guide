@@ -1,7 +1,17 @@
 <div class="row flex-items-xs-middle title-bar">
   <div class="title">Shopping list</div>
   <div class="actions">
-    <a class="btn btn-link"><clr-icon shape="plus"></clr-icon> Add to the shopping list</a>
+    <clr-signpost>
+      <a class="btn btn-link" clrSignpostTrigger="addPromptContent">
+        <clr-icon shape="plus"></clr-icon> Add to the shopping list
+      </a>
+      <clr-signpost-content #addPromptContent [clrPosition]="'bottom-middle'" *clrIfOpen>
+        <form (submit)="onAddSubmitted($event)">
+          <input #addItemInput id="addItemInput" name="item" type="text" placeholder="Shopping list item">
+          <button type="submit" class="btn btn-sm btn-icon btn-primary"><clr-icon shape="plus"></clr-icon></button>
+        </form>
+      </clr-signpost-content>
+    </clr-signpost>
     <clr-signpost>
       <a class="btn btn-sm btn-danger-outline" [class.disabled]="isEmpty()" clrSignpostTrigger="deleteConfirmationIsOpen">
         <clr-icon shape="uninstall"></clr-icon> Clear the shopping list
@@ -9,8 +19,8 @@
       <clr-signpost-content #clearConfirmationContent [clrPosition]="'bottom-middle'" *clrIfOpen>
         <h3 style="margin-bottom: 1rem;">Are you sure you want to clear your shopping list?</h3>
         <p style="margin-bottom: 1rem;">Once you clear your shopping list, you cannot undo it.</p>
-        <a type="button" class="btn btn-primary btn-danger" (click)="onClearConfirmationClear()">Clear</a>
-        <a type="button" class="btn btn-outline" (click)="onClearConfirmationCancel()">Cancel</a>
+        <a class="btn btn-primary btn-danger" (click)="onClearConfirmationClear()">Clear</a>
+        <a class="btn btn-outline" (click)="onClearConfirmationCancel()">Cancel</a>
       </clr-signpost-content>
     </clr-signpost>
   </div>

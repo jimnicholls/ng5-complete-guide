@@ -22,6 +22,15 @@ export class AppComponent {
   }
 
 
+  onShoppingListItemAdded(newItem: ShoppingListItem) {
+    if (this.shoppingList.findIndex(_1 => _1.description === newItem.description) === -1) {
+      this.shoppingList.push(newItem)
+    } else {
+      console.log('new item is already in the shopping list') // TODO: Alert user
+    }
+  }
+
+
   onShoppingListCleared() {
     this.shoppingList = [ ]
   }

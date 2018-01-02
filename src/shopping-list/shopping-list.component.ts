@@ -1,4 +1,7 @@
-import { Component, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core'
+import {
+  Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges,
+  ViewChild,
+} from '@angular/core'
 
 import { ShoppingListItem } from './shopping-list.model'
 
@@ -13,11 +16,15 @@ export class ShoppingListComponent implements OnChanges {
 
   @Input() shoppingList: ShoppingListItem[]
 
+  @Output() itemAdded = new EventEmitter<ShoppingListItem>()
   @Output() cleared = new EventEmitter()
 
   selected: ShoppingListItem[]
 
   viewAs: 'cards' | 'list' = 'cards'
+
+  @ViewChild('addPromptContent') addPromptContent: any
+  @ViewChild('addItemInput') addItemInput: ElementRef
 
   @ViewChild('clearConfirmationContent') clearConfirmationContent: any
 
@@ -42,6 +49,17 @@ export class ShoppingListComponent implements OnChanges {
   }
 
 
+  onAddSubmitted(event: Event) {
+    event.preventDefault()
+    this.addPromptContent.close()
+    const description = (<HTMLInputElement> this.addItemInput.nativeElement).value.trim()
+    if (description) {
+      const newItem = new ShoppingListItem(description)
+      this.itemAdded.emit(newItem)
+    }
+  }
+
+
   onClearConfirmationCancel() {
     this.clearConfirmationContent.close()
   }
@@ -57,6 +75,8 @@ export class ShoppingListComponent implements OnChanges {
   onEscapeKeydown() {
     if (this.clearConfirmationContent && this.clearConfirmationContent.ifOpenService.open) {
       this.clearConfirmationContent.close()
+    } else if (this.addPromptContent && this.addPromptContent.ifOpenService.open) {
+      this.addPromptContent.close()
     }
   }
 

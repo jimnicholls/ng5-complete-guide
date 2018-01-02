@@ -25,6 +25,7 @@
   <div class="content-container">
     <div class="content-area">
       <app-shopping-list [shoppingList]="shoppingList"
+                         (itemAdded)="onShoppingListItemAdded($event)"
                          (cleared)="onShoppingListCleared()">
       </app-shopping-list>
       <hr style="margin: 2rem -1rem;">
