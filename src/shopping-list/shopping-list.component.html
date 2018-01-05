@@ -5,12 +5,14 @@
       <a class="btn btn-link" clrSignpostTrigger="addPromptContent">
         <clr-icon shape="plus"></clr-icon> Add to the shopping list
       </a>
-      <clr-signpost-content #addPromptContent [clrPosition]="'bottom-middle'" *clrIfOpen>
-        <form (submit)="onAddSubmitted($event)">
-          <input #addItemInput id="addItemInput" name="item" type="text" placeholder="Shopping list item">
-          <button type="submit" class="btn btn-sm btn-icon btn-primary"><clr-icon shape="plus"></clr-icon></button>
-        </form>
-      </clr-signpost-content>
+      <ng-template clrIfOpen (clrIfOpenChange)="onAddPromptOpenChanged($event)">
+        <clr-signpost-content #addPromptContent [clrPosition]="'bottom-middle'">
+          <form (submit)="onAddSubmitted($event)">
+            <input #addItemInput id="addItemInput" name="item" type="text" placeholder="Shopping list item">
+            <button type="submit" class="btn btn-sm btn-icon btn-primary"><clr-icon shape="plus"></clr-icon></button>
+          </form>
+        </clr-signpost-content>
+      </ng-template>
     </clr-signpost>
     <clr-signpost>
       <a class="btn btn-sm btn-danger-outline" [class.disabled]="isEmpty()" clrSignpostTrigger="deleteConfirmationIsOpen">

@@ -60,6 +60,13 @@ export class ShoppingListComponent implements OnChanges {
   }
 
 
+  onAddPromptOpenChanged(isOpen: boolean) {
+    if (isOpen) {
+      setTimeout(() => (<HTMLInputElement> this.addItemInput.nativeElement).focus())
+    }
+  }
+
+
   onClearConfirmationCancel() {
     this.clearConfirmationContent.close()
   }
