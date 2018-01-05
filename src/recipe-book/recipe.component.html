@@ -29,15 +29,15 @@
     <a class="btn btn-sm btn-link"><clr-icon shape="shopping-cart"></clr-icon> Add to shopping list</a>
     <a class="btn btn-sm btn-link"><clr-icon shape="pencil"></clr-icon> Edit</a>
     <clr-signpost>
-      <a class="btn btn-sm btn-danger-outline" clrSignpostTrigger="deleteConfirmationIsOpen">
+      <a class="btn btn-sm btn-danger-outline" clrSignpostTrigger>
         <clr-icon shape="trash"></clr-icon> Delete
       </a>
-      <clr-signpost-content #deleteConfirmationContent [clrPosition]="'top-middle'" *clrIfOpen>
+      <app-signpost-content #deleteConfirmation [clrPosition]="'top-middle'">
         <h3 style="margin-bottom: 1rem;">Are you sure you want to delete this recipe?</h3>
         <p style="margin-bottom: 1rem;">Once you delete a recipe, you cannot undo it.</p>
-        <a type="button" class="btn btn-primary btn-danger" (click)="onDeleteConfirmationDelete()">Delete</a>
-        <a type="button" class="btn btn-outline" (click)="onDeleteConfirmationCancel()">Cancel</a>
-      </clr-signpost-content>
+        <a class="btn btn-primary btn-danger" (click)="onDeleteConfirmed(deleteConfirmation)">Delete</a>
+        <a class="btn btn-outline" appSignpostCancel>Cancel</a>
+      </app-signpost-content>
     </clr-signpost>
   </div>
 </div>

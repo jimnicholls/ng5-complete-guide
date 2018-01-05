@@ -1,9 +1,7 @@
-import {
-  Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges,
-  ViewChild,
-} from '@angular/core'
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, } from '@angular/core'
 
 import { ShoppingListItem } from './shopping-list.model'
+import { SignpostContentComponent } from '../clarityui-utils/signpost/signpost-content.component'
 
 
 
@@ -23,11 +21,6 @@ export class ShoppingListComponent implements OnChanges {
 
   viewAs: 'cards' | 'list' = 'cards'
 
-  @ViewChild('addPromptContent') addPromptContent: any
-  @ViewChild('addItemInput') addItemInput: ElementRef
-
-  @ViewChild('clearConfirmationContent') clearConfirmationContent: any
-
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.hasOwnProperty('shoppingList')) {
@@ -42,17 +35,17 @@ export class ShoppingListComponent implements OnChanges {
 
 
   onGridSelectedChanged() {
-    const selectedIds = new Set(this.selected.map(_1 => _1.id ))
+    const selectedIds = new Set(this.selected.map(_1 => _1.id))
     for (const i of this.shoppingList) {
       i.ticked = selectedIds.has(i.id)
     }
   }
 
 
-  onAddSubmitted(event: Event) {
+  onAddToShoppingList(event: Event, prompt: SignpostContentComponent, itemInput: HTMLInputElement) {
     event.preventDefault()
-    this.addPromptContent.close()
-    const description = (<HTMLInputElement> this.addItemInput.nativeElement).value.trim()
+    prompt.isOpen = false
+    const description = itemInput.value.trim()
     if (description) {
       const newItem = new ShoppingListItem(description)
       this.itemAdded.emit(newItem)
@@ -60,31 +53,9 @@ export class ShoppingListComponent implements OnChanges {
   }
 
 
-  onAddPromptOpenChanged(isOpen: boolean) {
-    if (isOpen) {
-      setTimeout(() => (<HTMLInputElement> this.addItemInput.nativeElement).focus())
-    }
-  }
-
-
-  onClearConfirmationCancel() {
-    this.clearConfirmationContent.close()
-  }
-
-
-  onClearConfirmationClear() {
-    this.clearConfirmationContent.close()
+  onClearConfirmed(clearConfirmation: SignpostContentComponent) {
+    clearConfirmation.isOpen = false
     this.cleared.emit()
-  }
-
-
-  @HostListener('document:keydown.escape')
-  onEscapeKeydown() {
-    if (this.clearConfirmationContent && this.clearConfirmationContent.ifOpenService.open) {
-      this.clearConfirmationContent.close()
-    } else if (this.addPromptContent && this.addPromptContent.ifOpenService.open) {
-      this.addPromptContent.close()
-    }
   }
 
 

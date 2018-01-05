@@ -20,18 +20,18 @@ export class RecipeBookComponent implements OnChanges {
 
   @Input() recipeBook: Recipe[]
 
-  selectedRecipe: Recipe | undefined = undefined
+  selectedRecipe: Recipe | null = null
 
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.selectedRecipe && changes.hasOwnProperty('recipeBook') && !this.recipeBook.includes(this.selectedRecipe)) {
-      this.selectedRecipe = undefined
+    if (this.selectedRecipe !== null && 'recipeBook' in changes && !this.recipeBook.includes(this.selectedRecipe)) {
+      this.selectedRecipe = null
     }
   }
 
 
   onRecipeClosed() {
-    this.selectedRecipe = undefined
+    this.selectedRecipe = null
   }
 
 }

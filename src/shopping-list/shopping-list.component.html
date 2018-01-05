@@ -5,25 +5,23 @@
       <a class="btn btn-link" clrSignpostTrigger="addPromptContent">
         <clr-icon shape="plus"></clr-icon> Add to the shopping list
       </a>
-      <ng-template clrIfOpen (clrIfOpenChange)="onAddPromptOpenChanged($event)">
-        <clr-signpost-content #addPromptContent [clrPosition]="'bottom-middle'">
-          <form (submit)="onAddSubmitted($event)">
-            <input #addItemInput id="addItemInput" name="item" type="text" placeholder="Shopping list item">
-            <button type="submit" class="btn btn-sm btn-icon btn-primary"><clr-icon shape="plus"></clr-icon></button>
-          </form>
-        </clr-signpost-content>
-      </ng-template>
+      <app-signpost-content #addPrompt [clrPosition]="'bottom-middle'">
+        <form appSignpostResetForm (submit)="onAddToShoppingList($event, addPrompt, addItemInput)">
+          <input #addItemInput id="addItemInput" name="item" type="text" placeholder="Shopping list item" appSignpostDefaultFocus>
+          <button type="submit" class="btn btn-sm btn-icon btn-primary"><clr-icon shape="plus"></clr-icon></button>
+        </form>
+      </app-signpost-content>
     </clr-signpost>
     <clr-signpost>
-      <a class="btn btn-sm btn-danger-outline" [class.disabled]="isEmpty()" clrSignpostTrigger="deleteConfirmationIsOpen">
+      <a class="btn btn-sm btn-danger-outline" [class.disabled]="isEmpty()" clrSignpostTrigger>
         <clr-icon shape="uninstall"></clr-icon> Clear the shopping list
       </a>
-      <clr-signpost-content #clearConfirmationContent [clrPosition]="'bottom-middle'" *clrIfOpen>
+      <app-signpost-content #clearConfirmation [clrPosition]="'bottom-middle'">
         <h3 style="margin-bottom: 1rem;">Are you sure you want to clear your shopping list?</h3>
         <p style="margin-bottom: 1rem;">Once you clear your shopping list, you cannot undo it.</p>
-        <a class="btn btn-primary btn-danger" (click)="onClearConfirmationClear()">Clear</a>
-        <a class="btn btn-outline" (click)="onClearConfirmationCancel()">Cancel</a>
-      </clr-signpost-content>
+        <a class="btn btn-primary btn-danger" (click)="onClearConfirmed(clearConfirmation)">Clear</a>
+        <a class="btn btn-outline" appSignpostCancel="">Cancel</a>
+      </app-signpost-content>
     </clr-signpost>
   </div>
   <div class="btn-group btn-icon" style="margin-left: auto;">
